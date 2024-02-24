@@ -1,9 +1,8 @@
 package generate
 
 import (
-	"github.com/sirupsen/logrus"
-
 	"github.com/khizunov/go-openapi-generator/internal/handlers/generate/external"
+	"github.com/sirupsen/logrus"
 )
 
 type Handler struct {

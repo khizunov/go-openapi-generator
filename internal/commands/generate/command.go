@@ -1,10 +1,9 @@
 package generate
 
 import (
+	"github.com/khizunov/go-openapi-generator/internal/commands/external"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-
-	"github.com/khizunov/go-openapi-generator/internal/commands/external"
 )
 
 type flags struct {
