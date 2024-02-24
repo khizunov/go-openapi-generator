@@ -1,11 +1,10 @@
 package main
 
 import (
+	"github.com/khizunov/go-openapi-generator/cmd/bootstrap"
 	"github.com/sirupsen/logrus"
 	"go.uber.org/fx"
 	"go.uber.org/fx/fxevent"
-
-	"github.com/khizunov/go-openapi-generator/cmd/bootstrap"
 )
 
 func main() {

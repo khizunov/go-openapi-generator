@@ -3,18 +3,15 @@ package bootstrap
 import (
 	"context"
 
-	"github.com/sirupsen/logrus"
-	"go.uber.org/fx"
-
 	"github.com/khizunov/go-openapi-generator/internal/commands/definitions"
 	"github.com/khizunov/go-openapi-generator/internal/commands/generate"
 	"github.com/khizunov/go-openapi-generator/internal/commands/root"
 	"github.com/khizunov/go-openapi-generator/internal/commands/validate"
+	"github.com/sirupsen/logrus"
+	"go.uber.org/fx"
 )
 
-var (
-	commandsTag = `group:"commands"`
-)
+var commandsTag = `group:"commands"`
 
 func ProvideCommands() fx.Option {
 	return fx.Provide(

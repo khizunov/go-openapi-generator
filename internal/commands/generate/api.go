@@ -1,10 +1,9 @@
 package generate
 
 import (
+	enums "github.com/khizunov/go-openapi-generator/internal/definitions/enums"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-
-	enums "github.com/khizunov/go-openapi-generator/internal/definitions/enums"
 )
 
 func (c *Command) CMD() *cobra.Command {
