@@ -11,15 +11,15 @@ type Command struct {
 }
 
 func NewCommand(logger logrus.FieldLogger) *Command {
-	cmd := &cobra.Command{
-		Use:   "validate",
-		Short: "Validate an OpenAPI/Swagger spec",
-		Run: func(cmd *cobra.Command, args []string) {
-			logger.Info("validate command called")
+	c := &Command{
+		cmd: &cobra.Command{
+			Use:   "validate",
+			Short: "Validate an OpenAPI/Swagger spec",
 		},
-	}
-	return &Command{
-		cmd:    cmd,
 		logger: logger,
 	}
+
+	c.setFlags()
+	c.cmd.Run = c.run
+	return c
 }
