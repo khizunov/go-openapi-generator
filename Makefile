@@ -29,5 +29,5 @@ tools: ## install build deps
 	go generate -tags tools tools/tools.go
 
 .PHONY: clean
-clean:
+clean: ## clean the binaries
 	rm -rf bin/
