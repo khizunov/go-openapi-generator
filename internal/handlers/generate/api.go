@@ -8,6 +8,8 @@ import (
 
 // Handle is a method that handles the generation from an OpenAPI/Swagger spec
 func (h *Handler) Handle(filepath string, specVersion enums.SpecVersion) error {
+	h.log("Handle").Debugf("Generate from %s", filepath)
+
 	switch specVersion {
 	case enums.SpecVersionV3:
 		return h.handleV3(filepath)

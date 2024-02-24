@@ -32,6 +32,7 @@ func NewCommand(handler external.GenerateHandler, logger logrus.FieldLogger) *Co
 		logger:  logger,
 	}
 
+	c.setFlags()
 	c.cmd.Run = c.run
 
 	return c

@@ -12,7 +12,10 @@ func (c *Command) CMD() *cobra.Command {
 func (c *Command) run(cmd *cobra.Command, args []string) {
 	logger := c.log("run")
 	logger.Debug("validate command called")
+}
 
+func (c *Command) setFlags() {
+	c.log("setFlags").Debug("Setting flags is not required for validate command")
 }
 
 func (c *Command) log(method string) logrus.FieldLogger {
