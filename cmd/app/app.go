@@ -10,7 +10,8 @@ import (
 
 func main() {
 	a := fx.New(
-		bootstrap.ProvideCommon(),
+		bootstrap.ProvideConfigs(),
+		bootstrap.ProvideLoggers(),
 		bootstrap.ProvideServices(),
 		bootstrap.ProvideHandlers(),
 		bootstrap.ProvideCommands(),
