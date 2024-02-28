@@ -1,0 +1,14 @@
+{{- if and .IsBaseType .IsExported (not .IsSuperAlias) }}
+    {{- template "schemaPolymorphic" . }}
+{{- else if .IsSuperAlias }}
+  type {{ pascalize .Name }} {{ template "typeSchemaType" . }}{{/* For types declared as $ref on some other type, just declare the type as a golang _aliased_ type, e.g. type A = B. No method shall be redeclared.  */}}
+{{- else if .IsEmbedded }}
+    {{- template "schemaEmbedded" . }}
+{{- else }}
+    {{- if or .IsComplexObject .IsTuple .IsAdditionalProperties }}
+    {{ if .Name }}type {{ if not .IsExported }}{{ .Name }}{{ else }}{{ pascalize .Name }}{{ end }}{{ end }} {{ template "schemaBody" . }}
+    {{- else }}
+      type {{ pascalize .Name }} {{ template "typeSchemaType" . }}
+    {{- end }}
+{{- end }}
+

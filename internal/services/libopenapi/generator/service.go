@@ -1,4 +1,4 @@
-package generator
+package libopenapi
 
 import (
 	"github.com/sirupsen/logrus"

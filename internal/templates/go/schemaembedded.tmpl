@@ -1,0 +1,5 @@
+{{ define "schemaEmbedded" }}
+type {{ pascalize .Name }} struct {
+  {{ if .ElemType.IsNullable }}*{{ end }}{{ .ElemType.GoType }}
+}
+{{- end }}

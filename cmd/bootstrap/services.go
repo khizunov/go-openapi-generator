@@ -1,10 +1,11 @@
 package bootstrap
 
 import (
-	"github.com/khizunov/go-openapi-generator/internal/handlers/generate/external"
-	"github.com/khizunov/go-openapi-generator/internal/services/generator"
-	"github.com/khizunov/go-openapi-generator/internal/services/parser"
 	"go.uber.org/fx"
+
+	"github.com/khizunov/go-openapi-generator/internal/handlers/generate/external"
+	generator "github.com/khizunov/go-openapi-generator/internal/services/libopenapi/generator"
+	parser "github.com/khizunov/go-openapi-generator/internal/services/libopenapi/parser"
 )
 
 func ProvideServices() fx.Option {

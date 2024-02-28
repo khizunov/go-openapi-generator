@@ -1,9 +1,10 @@
 package generate
 
 import (
-	enums "github.com/khizunov/go-openapi-generator/internal/definitions/enums"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+
+	enums "github.com/khizunov/go-openapi-generator/internal/definitions/enums"
 )
 
 func (c *Command) CMD() *cobra.Command {
@@ -23,23 +24,17 @@ func (c *Command) run(_ *cobra.Command, _ []string) {
 }
 
 func (c *Command) setFlags() {
-	var version string
-	var filepath string
+	c.flags = &flags{}
 
 	c.cmd.
 		Flags().
-		StringVarP(&version, "version", "v", "v3", "Spec version of the API")
+		StringVarP(&c.flags.version, "version", "v", "v3", "Spec version of the API")
 	c.cmd.
 		Flags().
-		StringVarP(&filepath, "file", "f", "openapi.yaml", "Path to the OpenAPI/Swagger spec file")
+		StringVarP(&c.flags.filepath, "file", "f", "openapi.yaml", "Path to the OpenAPI/Swagger spec file")
 
 	c.log("setFlags").
-		Debugf("Flags are set: version=%s, filepath=%s", version, filepath)
-
-	c.flags = &flags{
-		version:  version,
-		filepath: filepath,
-	}
+		Debugf("Flags are set: version=%s, filepath=%s", c.flags.version, c.flags.filepath)
 }
 
 func (c *Command) log(method string) logrus.FieldLogger {

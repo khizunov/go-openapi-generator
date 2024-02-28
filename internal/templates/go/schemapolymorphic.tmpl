@@ -1,0 +1,3 @@
+{{ define "schemaPolymorphic" }}
+  type {{ camelize .Name }} {{ template "schemaBody" . }}
+{{- end }}

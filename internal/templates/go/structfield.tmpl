@@ -1,0 +1,37 @@
+{{ define "structfield" }}
+    {{- if not $.IsBaseType -}}
+      // {{ template "docstring" . }}
+    {{- end}}
+    {{ pascalize .Name}} {{ template "schemaType" . }} {{ .PrintTags }}
+{{ end }}
+
+{{- define "tuplefield" }}
+    {{- if not $.IsBaseType -}}
+      // {{ template "docstring" . }}
+    {{ end }}
+    {{- pascalize .Name}} {{ template "schemaType" . }} `json:"-"
+    {{- if .CustomTag }} {{ .CustomTag }}{{ end }}`
+{{ end }}
+
+{{- define "structfieldIface" }}
+    {{- if not $.IsBaseType -}}
+      // {{ template "docstring" . }}
+    {{- end }}
+    {{ pascalize .Name}}() {{ template "schemaType" . }}
+    Set{{ pascalize .Name}}({{ template "schemaType" . }})
+{{ end }}
+{{ define "tuplefieldIface" }}
+    {{- if not $.IsBaseType -}}
+      // {{ template "docstring" . }}
+    {{ end }}
+    {{- pascalize .Name}}() {{ template "schemaType" . }}
+    Set{{ pascalize .Name}}({{ template "schemaType" . }})
+{{ end }}
+
+{{- define "privstructfield" }}
+    {{- camelize .Name}}Field {{ template "schemaType" . }}
+{{ end }}
+
+{{- define "privtuplefield" }}
+    {{- camelize .Name}}Field {{ template "schemaType" . }}
+{{ end }}

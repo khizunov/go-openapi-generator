@@ -1,4 +1,4 @@
-package parser
+package libopenapi
 
 import (
 	"os"
@@ -20,15 +20,15 @@ func (m *Parser) ParseV3(filename string) (doc *v3.Document, err error) {
 		return doc, de
 	}
 
-	v3m, v3me := d.BuildV3Model()
-	if v3me != nil {
-		for _, e := range v3me {
+	model, bErr := d.BuildV3Model()
+	if bErr != nil {
+		for _, e := range bErr {
 			err = multierror.Append(err, e)
 		}
 		return
 	}
 
-	return &v3m.Model, err
+	return &model.Model, err
 }
 
 func (m *Parser) ParseV2(filename string) (doc *v2.Swagger, err error) {
@@ -42,9 +42,9 @@ func (m *Parser) ParseV2(filename string) (doc *v2.Swagger, err error) {
 		return doc, de
 	}
 
-	model, me := d.BuildV2Model()
-	if me != nil {
-		for _, e := range me {
+	model, bErr := d.BuildV2Model()
+	if bErr != nil {
+		for _, e := range bErr {
 			err = multierror.Append(err, e)
 		}
 		return
