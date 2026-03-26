@@ -14,7 +14,7 @@ func (c *Command) run(_ *cobra.Command, _ []string) {
 	logger := c.log("run")
 	logger.Debug("generate command called")
 
-	if e := c.handler.Handle(c.flags.filepath, enums.SpecVersion(c.flags.version)); e != nil {
+	if e := c.handler.Handle(c.flags.filepath, enums.SpecVersion(c.flags.version), c.flags.generatorName, c.flags.outputDir); e != nil {
 		logger.Errorf("Failed to generate from %s", c.flags.filepath)
 		logger.Error(e)
 	} else {
@@ -25,20 +25,21 @@ func (c *Command) run(_ *cobra.Command, _ []string) {
 func (c *Command) setFlags() {
 	var version string
 	var filepath string
+	var generatorName string
+	var outputDir string
 
-	c.cmd.
-		Flags().
-		StringVarP(&version, "version", "v", "v3", "Spec version of the API")
-	c.cmd.
-		Flags().
-		StringVarP(&filepath, "file", "f", "openapi.yaml", "Path to the OpenAPI/Swagger spec file")
+	c.cmd.Flags().StringVarP(&version, "version", "v", "v3", "Spec version of the API")
+	c.cmd.Flags().StringVarP(&filepath, "file", "f", "openapi.yaml", "Path to the OpenAPI/Swagger spec file")
+	c.cmd.Flags().StringVarP(&generatorName, "generator", "g", "go-resty", "Generator to use (e.g. go-resty)")
+	c.cmd.Flags().StringVarP(&outputDir, "output", "o", "./generated", "Output directory")
 
-	c.log("setFlags").
-		Debugf("Flags are set: version=%s, filepath=%s", version, filepath)
+	c.log("setFlags").Debugf("Flags are set: version=%s, filepath=%s, generator=%s, output=%s", version, filepath, generatorName, outputDir)
 
 	c.flags = &flags{
-		version:  version,
-		filepath: filepath,
+		version:       version,
+		filepath:      filepath,
+		generatorName: generatorName,
+		outputDir:     outputDir,
 	}
 }
 

@@ -6,8 +6,8 @@ import (
 )
 
 type GeneratorAPI interface {
-	GenerateFromV3(doc *v3.Document) error
-	GenerateFromV2(doc *v2.Swagger) error
+	GenerateFromV3(doc *v3.Document, generatorName, outputDir string) error
+	GenerateFromV2(doc *v2.Swagger, generatorName, outputDir string) error
 }
 
 type ParserAPI interface {

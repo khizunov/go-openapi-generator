@@ -7,8 +7,10 @@ import (
 )
 
 type flags struct {
-	version  string
-	filepath string
+	version       string
+	filepath      string
+	generatorName string
+	outputDir     string
 }
 
 type Command struct {

@@ -4,6 +4,7 @@ import (
 	"github.com/khizunov/go-openapi-generator/internal/handlers/generate/external"
 	"github.com/khizunov/go-openapi-generator/internal/services/generator"
 	"github.com/khizunov/go-openapi-generator/internal/services/parser"
+	_ "github.com/khizunov/go-openapi-generator/internal/generators/goresty"
 	"go.uber.org/fx"
 )
 
