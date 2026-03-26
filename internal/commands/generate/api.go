@@ -23,24 +23,12 @@ func (c *Command) run(_ *cobra.Command, _ []string) {
 }
 
 func (c *Command) setFlags() {
-	var version string
-	var filepath string
-	var generatorName string
-	var outputDir string
+	c.flags = &flags{}
 
-	c.cmd.Flags().StringVarP(&version, "version", "v", "v3", "Spec version of the API")
-	c.cmd.Flags().StringVarP(&filepath, "file", "f", "openapi.yaml", "Path to the OpenAPI/Swagger spec file")
-	c.cmd.Flags().StringVarP(&generatorName, "generator", "g", "go-resty", "Generator to use (e.g. go-resty)")
-	c.cmd.Flags().StringVarP(&outputDir, "output", "o", "./generated", "Output directory")
-
-	c.log("setFlags").Debugf("Flags are set: version=%s, filepath=%s, generator=%s, output=%s", version, filepath, generatorName, outputDir)
-
-	c.flags = &flags{
-		version:       version,
-		filepath:      filepath,
-		generatorName: generatorName,
-		outputDir:     outputDir,
-	}
+	c.cmd.Flags().StringVarP(&c.flags.version, "version", "v", "v3", "Spec version of the API")
+	c.cmd.Flags().StringVarP(&c.flags.filepath, "file", "f", "openapi.yaml", "Path to the OpenAPI/Swagger spec file")
+	c.cmd.Flags().StringVarP(&c.flags.generatorName, "generator", "g", "go-resty", "Generator to use (e.g. go-resty)")
+	c.cmd.Flags().StringVarP(&c.flags.outputDir, "output", "o", "./generated", "Output directory")
 }
 
 func (c *Command) log(method string) logrus.FieldLogger {

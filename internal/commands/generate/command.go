@@ -27,7 +27,7 @@ func NewCommand(handler external.GenerateHandler, logger logrus.FieldLogger) *Co
 			Use:     "generate",
 			Aliases: []string{"gen"},
 			Short:   "Generate a client or server from an OpenAPI/Swagger spec",
-			Args:    cobra.ExactArgs(1),
+			Args:    cobra.NoArgs,
 		},
 		handler: handler,
 		logger:  logger,
