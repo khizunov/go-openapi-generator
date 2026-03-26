@@ -14,6 +14,10 @@ var templateFiles embed.FS
 // GoRestyGenerator generates a Go HTTP client using go-resty/resty.
 type GoRestyGenerator struct{}
 
+func init() {
+	codegen.Register(New())
+}
+
 // New returns a new GoRestyGenerator.
 func New() *GoRestyGenerator {
 	return &GoRestyGenerator{}

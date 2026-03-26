@@ -31,7 +31,7 @@ func Render(tmplFS fs.FS, tmplName string, data any, outPath string) error {
 	if err != nil {
 		return fmt.Errorf("renderer: create output file %q: %w", outPath, err)
 	}
-	defer f.Close()
+	defer func() { _ = f.Close() }()
 
 	if err := tmpl.Execute(f, data); err != nil {
 		return fmt.Errorf("renderer: execute template %q: %w", tmplName, err)
